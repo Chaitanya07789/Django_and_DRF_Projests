@@ -1,0 +1,275 @@
+
+
+## **I. OOP Basics (1–10)**
+
+1. **What is OOP?**
+   OOP (Object-Oriented Programming) is a programming paradigm that organizes code into *objects* that combine **data (attributes)** and **functions (methods)**. It focuses on *real-world modeling*.
+
+2. **What are the four pillars of OOP?**
+
+   * **Encapsulation** → Binding data and methods together, hiding internal details.
+   * **Abstraction** → Showing only necessary details.
+   * **Inheritance** → Deriving new classes from existing ones.
+   * **Polymorphism** → One interface, multiple forms (method overloading/overriding).
+
+3. **Difference between a class and an object?**
+
+   * **Class** → Blueprint or template (e.g., `Car`).
+   * **Object** → Instance of a class (e.g., `my_car = Car()`).
+
+4. **How to define a class in Python?**
+
+   ```python
+   class Car:
+       def __init__(self, brand):
+           self.brand = brand
+   ```
+
+5. **What is `__init__` in Python?**
+   A constructor method automatically called when an object is created. Used to initialize attributes.
+
+6. **Can a class have multiple constructors in Python?**
+   Python does not allow *method overloading* by default. Multiple constructors can be simulated using default arguments or `@classmethod`.
+
+7. **What is the difference between an instance variable and a class variable?**
+
+   * **Instance variable** → Belongs to each object (`self.name`).
+   * **Class variable** → Shared across all objects (`ClassName.variable`).
+
+8. **How to delete an attribute of an object?**
+
+   ```python
+   del object.attribute
+   ```
+
+9. **What is `self` in Python classes?**
+
+   * Refers to the current instance of the class.
+   * Used to access instance variables and methods.
+
+10. **Can we create a class without attributes in Python?**
+    Yes, use `pass`:
+
+    ```python
+    class Empty:
+        pass
+    ```
+
+---
+
+## **II. Encapsulation & Abstraction (11–20)**
+
+11. **What is encapsulation?**
+    Wrapping data (variables) and methods in one unit and restricting direct access.
+
+12. **How to make a variable private in Python?**
+    Prefix with double underscore: `self.__name`.
+
+13. **Difference between protected and private in Python?**
+
+    * **Protected (`_var`)** → Convention to not access from outside.
+    * **Private (`__var`)** → Name-mangled to prevent direct access.
+
+14. **What is abstraction?**
+    Hiding complex details and exposing only essentials (via abstract classes or interfaces).
+
+15. **How to implement abstraction in Python?**
+
+    ```python
+    from abc import ABC, abstractmethod
+
+    class Shape(ABC):
+        @abstractmethod
+        def area(self):
+            pass
+    ```
+
+16. **What is name mangling in Python?**
+    Private variables (`__var`) are internally renamed as `_ClassName__var`.
+
+17. **How does encapsulation improve security?**
+    By controlling access to variables and methods through getters and setters.
+
+18. **What is the difference between getters and setters?**
+
+    * **Getter** → Method to read a private attribute.
+    * **Setter** → Method to modify a private attribute.
+
+19. **Example of getter and setter in Python:**
+
+    ```python
+    class Person:
+        def __init__(self, name):
+            self.__name = name
+
+        def get_name(self):
+            return self.__name
+
+        def set_name(self, name):
+            self.__name = name
+    ```
+
+20. **Why is abstraction important in large projects?**
+    It reduces complexity, promotes code reusability, and isolates changes.
+
+---
+
+## **III. Inheritance (21–30)**
+
+21. **What is inheritance?**
+    A mechanism where a new class (child) inherits properties and methods from an existing class (parent).
+
+22. **Types of inheritance in Python:**
+
+    * Single
+    * Multiple
+    * Multilevel
+    * Hierarchical
+    * Hybrid
+
+23. **Example of single inheritance:**
+
+    ```python
+    class Animal:
+        def speak(self):
+            print("Animal sound")
+
+    class Dog(Animal):
+        pass
+    ```
+
+24. **What is method overriding?**
+    Redefining a parent class method in the child class.
+
+25. **What is `super()` in Python?**
+    Used to call a method from the parent class inside the child class.
+
+26. **Example of multiple inheritance:**
+
+    ```python
+    class A: pass
+    class B: pass
+    class C(A, B): pass
+    ```
+
+27. **What is the MRO (Method Resolution Order)?**
+    The order in which Python searches for a method in multiple inheritance (`C.mro()`).
+
+28. **What is hierarchical inheritance?**
+    Multiple child classes inherit from the same parent class.
+
+29. **Difference between `is-a` and `has-a` relationship?**
+
+    * **is-a** → Inheritance (Dog is an Animal).
+    * **has-a** → Composition (Car has an Engine).
+
+30. **Can a child class override a private method of a parent class?**
+    No, but it can define a new method with the same name (not actual overriding).
+
+---
+
+## **IV. Polymorphism (31–40)**
+
+31. **What is polymorphism?**
+    Ability to use the same method name for different behaviors.
+
+32. **Types of polymorphism:**
+
+    * Compile-time (method overloading — not native in Python)
+    * Runtime (method overriding)
+
+33. **Example of runtime polymorphism:**
+
+    ```python
+    class Bird:
+        def sound(self):
+            print("Chirp")
+
+    class Dog:
+        def sound(self):
+            print("Bark")
+    ```
+
+34. **What is duck typing in Python?**
+    If an object behaves like a certain type, it can be used as that type (no strict type checking).
+
+35. **What is operator overloading?**
+    Using special methods (`__add__`, `__str__`, etc.) to redefine operators.
+
+36. **Example of operator overloading:**
+
+    ```python
+    class Point:
+        def __init__(self, x, y):
+            self.x, self.y = x, y
+        def __add__(self, other):
+            return Point(self.x + other.x, self.y + other.y)
+    ```
+
+37. **What is method overloading in Python?**
+    Not supported natively; can simulate using default arguments.
+
+38. **Difference between overriding and overloading?**
+
+    * **Overriding** → Same method in child class (runtime).
+    * **Overloading** → Same method name with different parameters (compile-time).
+
+39. **What is the benefit of polymorphism?**
+    Improves flexibility, reduces code duplication.
+
+40. **Can polymorphism be used with functions in Python?**
+    Yes, by passing different types of objects and calling the same method.
+
+---
+
+## **V. Advanced OOP (41–50)**
+
+41. **What are magic methods in Python?**
+    Special methods with double underscores (`__init__`, `__str__`, `__add__`, etc.).
+
+42. **What is `__str__` vs `__repr__`?**
+
+    * `__str__` → User-friendly string.
+    * `__repr__` → Developer-friendly debug string.
+
+43. **What is composition in OOP?**
+    Building complex classes by including objects of other classes.
+
+44. **Difference between classmethod, staticmethod, and instance method?**
+
+    * **Instance method** → Takes `self`.
+    * **Class method** → Takes `cls`.
+    * **Static method** → Takes no `self` or `cls`.
+
+45. **Example of class method:**
+
+    ```python
+    class MyClass:
+        @classmethod
+        def my_class_method(cls):
+            print("Class method")
+    ```
+
+46. **Example of static method:**
+
+    ```python
+    class MyClass:
+        @staticmethod
+        def my_static_method():
+            print("Static method")
+    ```
+
+47. **What is multiple dispatch in Python?**
+    Choosing which method to run based on argument types (can use `functools.singledispatch`).
+
+48. **What is an abstract base class (ABC)?**
+    A class that cannot be instantiated and may contain abstract methods.
+
+49. **Difference between interface and abstract class?**
+
+    * Interface → Only abstract methods.
+    * Abstract class → Can have both abstract and concrete methods.
+
+50. **What is metaclass in Python?**
+    A class for classes — controls how classes are created.
+
